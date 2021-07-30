@@ -1,12 +1,14 @@
 from datetime import datetime
 import threading
 import random
+import time
 
 
 
 
 
 def choice_maker():
+
     now = datetime.now()
 
     second = str(now.strftime("%S"))
@@ -14,8 +16,9 @@ def choice_maker():
     hour = str(now.strftime("%H"))
     print(second)
 
+
     if int(minute) % 2 == 0:
-        threading.Timer(random.randint(0, 9), choice_maker).start()
+        time.sleep(random.randint(60, 540))
         file_object = open("log.txt", "a")
         log_object = open("time_of_log.txt", "a")
         file_object.write("       even          ")
@@ -23,7 +26,7 @@ def choice_maker():
         file_object.close()
         log_object.close()
     else:
-        threading.Timer(random.randint(0, 9), choice_maker).start()
+        time.sleep(random.randint(60, 540))
         file_object = open("log.txt", "a")
         file_object.write("       odd         ")
         log_object = open("time_of_log.txt", "a")
@@ -31,9 +34,6 @@ def choice_maker():
         file_object.close()
         log_object.close()
 
-
-
-
-
-while True:
     choice_maker()
+
+choice_maker()
